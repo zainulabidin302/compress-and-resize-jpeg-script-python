@@ -57,10 +57,13 @@ def main(argv):
             sys.exit(-1)
 
 
-    for f in files:
+    for i, f in enumerate(files):
+        print(f)
         ## only process jpeg or jpg images.
         if any(f.endswith(ext) for ext in ['jpeg', 'jpg']):
-            processImage(os.path.join(args[1], f), os.path.join(args[2], f))
+            src = os.path.join(args[1], f)
+            dst = os.path.join(args[2], "{}.jpg".format(str(i)) )
+            processImage(src, dst)
 
 if __name__ == '__main__':
     main(sys.argv)
