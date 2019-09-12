@@ -1,5 +1,4 @@
-# compress-with-and-height-of-jpeg
-Compress and resize Width and Height of jpeg image with python script
+# Compress and resize Width and Height of jpeg image with python script
 
 This script is intended to read all image from one directory then,
     compress and resize all jpg, or jpeg images in directory and 
