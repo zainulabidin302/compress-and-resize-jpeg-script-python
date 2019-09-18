@@ -22,8 +22,8 @@ OUTPUT Directory will contain the output after the script is run.
 * png with 90% quality reduction
     `python compress.py input_dir output_dir --format png --quality 1`
 
-* png with 90% quality reduction
-    `python compress.py input_dir output_dir --format png --quality 1`
+* png with 10% quality reduction
+    `python compress.py input_dir output_dir --format png --quality 9`
 
 ## default:
     `--format: jpg`
