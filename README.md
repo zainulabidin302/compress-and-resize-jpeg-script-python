@@ -14,6 +14,7 @@ OUTPUT Directory will contain the output after the script is run.
 
 ## examples: 
 * jpg with 50% quality reduction
+    
     `python compress.py input_dir output_dir --format jpg --quality 50`
  
 * jpg with 90% quality reduction
