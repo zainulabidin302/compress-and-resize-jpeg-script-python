@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 """
     This script is intended to read all image from one directory then,
         compress and resize all jpg, or jpeg images in directory and 
@@ -19,17 +20,17 @@ import os
 args = sys.argv
 files = None
 
-def processImage(source, dest):
+def processImage(source, dest, options):
     img = Image.open(source)
     BASE_HEIGHT = 1200
     HPERCENT = (BASE_HEIGHT/float(img.size[1]))
     WIDTH_SIZE = int((float(img.size[0])*float(HPERCENT)))
     img = img.resize((WIDTH_SIZE,BASE_HEIGHT), Image.ANTIALIAS)
-    img.save(dest,"JPEG", quality=5)
+    img.save(dest,"JPEG", quality=options['quality'])
 
 
 def main(argv):
-    
+    q = 5
     if (len(args) < 3):
         print('usage: python compress.py <input_directory_path> <output_directory_path>')
         sys.exit(0)
@@ -56,6 +57,14 @@ def main(argv):
             print('Error while directory content.')
             sys.exit(-1)
 
+    if '--quality' in options:
+        try:
+            i = options.index('--quality')
+            q = int(options[i + 1])
+            print('Quality set to {}'.format(q))
+        except:
+            print('Incorrect arguments, quality must be a number between 0 and 100.')
+            sys.exit(-1)
 
     for i, f in enumerate(files):
         print(f)
@@ -63,7 +72,9 @@ def main(argv):
         if any(f.endswith(ext) for ext in ['jpeg', 'jpg']):
             src = os.path.join(args[1], f)
             dst = os.path.join(args[2], "{}.jpg".format(str(i)) )
-            processImage(src, dst)
+            processImage(src, dst, options = {
+                'quality': q
+            })
 
 if __name__ == '__main__':
     main(sys.argv)
